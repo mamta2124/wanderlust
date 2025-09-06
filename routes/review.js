@@ -23,4 +23,14 @@ router.delete(
      wrapAsync(reviewController.destroyReview)
 );
 
+// UPDATE review
+router.put("/:reviewId", async (req, res) => {
+    const { id, reviewId } = req.params;   // id = listing id, reviewId = review id
+    const { comment } = req.body;          // jo naya comment user ne dala
+
+    await Review.findByIdAndUpdate(reviewId, { comment });
+
+    res.redirect(`/listings/${id}`);
+});
+
 module.exports =router;

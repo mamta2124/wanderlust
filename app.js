@@ -20,6 +20,8 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+const reviewRoutes = require("./routes/review");
+app.use("/listings/:id/reviews", reviewRoutes);
 
 const dbUrl=process.env.ATLASDB_URL;
 
@@ -120,6 +122,7 @@ app.post("/listings", async (req, res) => {
     res.send("Error creating listing");
   }
 });
+
 
 app.listen(8080, () => {
     console.log("server is listening to port 8080");
